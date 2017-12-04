@@ -2,12 +2,14 @@ package com.example.anu.visualizerapp;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -31,7 +33,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void defaultSetup() {
-        mVisualizerView.setShowBass(true);
+
+        /**
+         * get checkbox preference from shared preference
+         * and use it ti show bass
+         */
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean showBass = sharedPreferences.getBoolean(getResources().getString(R.string.pref_key),
+                getResources().getBoolean(R.bool.show_bass_default_value));
+        mVisualizerView.setShowBass(showBass);
+
         mVisualizerView.setShowMid(true);
         mVisualizerView.setShowTreble(true);
         mVisualizerView.setMinSizeScale(1);
