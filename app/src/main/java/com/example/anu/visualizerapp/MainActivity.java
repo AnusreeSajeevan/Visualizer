@@ -17,7 +17,8 @@ import android.widget.Toast;
 import com.example.anu.visualizerapp.AudioVisuals.AudioInputReader;
 import com.example.anu.visualizerapp.AudioVisuals.VisualizerView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        SharedPreferences.OnSharedPreferenceChangeListener{
 
     private static final int MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE = 88;
     private VisualizerView mVisualizerView;
@@ -131,5 +132,32 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equalsIgnoreCase(getResources().getString(R.string.pref_key))){
+            mVisualizerView.setShowBass(sharedPreferences.getBoolean(getResources().getString(R.string.pref_key),
+                    getResources().getBoolean(R.bool.show_bass_default_value)));
+        }
+    }
+
+    /**
+     * register MainActivity as an OnsharedPreferenceListener
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+    }
+
+    /**
+     * unregister MainActivity as an OnsharedPreferenceListener
+     * to avoid any memory leaks
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
     }
 }
