@@ -40,12 +40,16 @@ public class MainActivity extends AppCompatActivity implements
          * and use it ti show bass
          */
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean showBass = sharedPreferences.getBoolean(getResources().getString(R.string.pref_key),
-                getResources().getBoolean(R.bool.show_bass_default_value));
-        mVisualizerView.setShowBass(showBass);
 
-        mVisualizerView.setShowMid(true);
-        mVisualizerView.setShowTreble(true);
+        mVisualizerView.setShowBass(sharedPreferences.getBoolean(getResources().getString(R.string.show_bass_pref_key),
+                getResources().getBoolean(R.bool.show_bass_default_value)));
+
+        mVisualizerView.setShowMid(sharedPreferences.getBoolean(getResources().getString(R.string.show_mid_range_pref_key),
+                getResources().getBoolean(R.bool.show_mid_range_default_value)));
+
+        mVisualizerView.setShowTreble(sharedPreferences.getBoolean(getResources().getString(R.string.show_treble_pref_key),
+                getResources().getBoolean(R.bool.show_treble_default_value)));
+
         mVisualizerView.setMinSizeScale(1);
         mVisualizerView.setColor(getString(R.string.pref_color_red_value));
     }
@@ -136,9 +140,15 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equalsIgnoreCase(getResources().getString(R.string.pref_key))){
-            mVisualizerView.setShowBass(sharedPreferences.getBoolean(getResources().getString(R.string.pref_key),
+        if (key.equalsIgnoreCase(getResources().getString(R.string.show_bass_pref_key))){
+            mVisualizerView.setShowBass(sharedPreferences.getBoolean(getResources().getString(R.string.show_bass_pref_key),
                     getResources().getBoolean(R.bool.show_bass_default_value)));
+        }else if (key.equalsIgnoreCase(getResources().getString(R.string.show_treble_pref_key))){
+            mVisualizerView.setShowTreble(sharedPreferences.getBoolean(getResources().getString(R.string.show_treble_pref_key),
+                    getResources().getBoolean(R.bool.show_treble_default_value)));
+        }else if (key.equalsIgnoreCase(getResources().getString(R.string.show_mid_range_pref_key))){
+            mVisualizerView.setShowMid(sharedPreferences.getBoolean(getResources().getString(R.string.show_mid_range_pref_key),
+                    getResources().getBoolean(R.bool.show_mid_range_default_value)));
         }
     }
 

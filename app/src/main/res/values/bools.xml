@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <bool name="show_bass_default_value">true</bool>
+    <bool name="show_treble_default_value">false</bool>
+    <bool name="show_mid_range_default_value">false</bool>
 </resources>

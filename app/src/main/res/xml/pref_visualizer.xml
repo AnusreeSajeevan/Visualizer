@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-<CheckBoxPreference
-    android:defaultValue="true"
-    android:title="@string/show_bass_title"
-    android:summaryOff="@string/pref_off_summary"
-    android:key="@string/pref_key"
-    android:summaryOn="@string/pref_on_summary"/>
+    <CheckBoxPreference
+        android:defaultValue="@bool/show_bass_default_value"
+        android:title="@string/show_bass_title"
+        android:summaryOff="@string/pref_show_bass_off_summary"
+        android:key="@string/show_bass_pref_key"
+        android:summaryOn="@string/pref_show_bass_on_summary"/>
+    <CheckBoxPreference
+        android:defaultValue="@bool/show_treble_default_value"
+        android:summaryOn="@string/pref_show_treble_on_summary"
+        android:summaryOff="@string/pref_show_treble_off_summary"
+        android:title="@string/show_treble_title"
+        android:key="@string/show_treble_pref_key"/>
+    <CheckBoxPreference
+        android:defaultValue="@bool/show_mid_range_default_value"
+        android:summaryOn="@string/pref_show_mid_range_on_summary"
+        android:summaryOff="@string/pref_show_mid_range_off_summary"
+        android:title="@string/show_mid_range_title"
+        android:key="@string/show_mid_range_pref_key"/>
 </PreferenceScreen>
