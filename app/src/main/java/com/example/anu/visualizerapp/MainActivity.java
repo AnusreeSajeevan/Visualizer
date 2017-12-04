@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity implements
                 getResources().getBoolean(R.bool.show_treble_default_value)));
 
         mVisualizerView.setMinSizeScale(1);
-        mVisualizerView.setColor(getString(R.string.pref_color_red_value));
+
+        mVisualizerView.setColor(sharedPreferences.getString(getResources().getString(R.string.pref_color_key),
+                 getResources().getString(R.string.pref_color_red_value)));
     }
 
     /**
@@ -149,6 +151,10 @@ public class MainActivity extends AppCompatActivity implements
         }else if (key.equalsIgnoreCase(getResources().getString(R.string.show_mid_range_pref_key))){
             mVisualizerView.setShowMid(sharedPreferences.getBoolean(getResources().getString(R.string.show_mid_range_pref_key),
                     getResources().getBoolean(R.bool.show_mid_range_default_value)));
+        }
+        else if (key.equalsIgnoreCase(getResources().getString(R.string.pref_color_key))) {
+            mVisualizerView.setColor(sharedPreferences.getString(getResources().getString(R.string.pref_color_key),
+                    getResources().getString(R.string.pref_color_red_value)));
         }
     }
 

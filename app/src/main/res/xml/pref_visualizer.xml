@@ -18,4 +18,10 @@
         android:summaryOff="@string/pref_show_mid_range_off_summary"
         android:title="@string/show_mid_range_title"
         android:key="@string/show_mid_range_pref_key"/>
+    <ListPreference
+        android:title="@string/pref_color_title"
+        android:key="@string/pref_color_key"
+        android:defaultValue="@string/pref_color_default_value"
+        android:entries="@array/pref_color_labels"
+        android:entryValues="@array/pref_color_values"/>
 </PreferenceScreen>
