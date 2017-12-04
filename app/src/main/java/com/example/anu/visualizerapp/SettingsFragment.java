@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.preference.CheckBoxPreference;
+import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -13,6 +14,7 @@ import android.support.v7.preference.PreferenceScreen;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 
 public class SettingsFragment extends PreferenceFragmentCompat implements
@@ -34,7 +36,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         for (int i=0;i<count;i++){
             Preference preference = preferenceScreen.getPreference(i);
             if (!(preference instanceof CheckBoxPreference)){
-                setPreferenceSummary(preference, sharedPreferences.getString(getResources().getString(R.string.pref_color_key), ""));
+                setPreferenceSummary(preference, sharedPreferences.getString(preference.getKey(), ""));
             }
         }
     }
@@ -52,6 +54,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                if (index>=0){
                     listPreference.setSummary(listPreference.getEntries()[index]);
                }
+           }
+           else if (preference instanceof EditTextPreference){
+                preference.setSummary(value);
            }
         }
     }

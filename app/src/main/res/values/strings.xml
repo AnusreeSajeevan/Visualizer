@@ -7,17 +7,17 @@
     <string name="show_bass_title">Show Bass</string>
     <string name="pref_show_bass_off_summary">Hidden</string>
     <string name="pref_show_bass_on_summary">Shown</string>
-    <string name="show_bass_pref_key">show_bass</string>
+    <string name="show_bass_pref_key" translatable="false">show_bass</string>
 
     <string name="show_treble_title">Show Treble</string>
     <string name="pref_show_treble_off_summary">Hidden</string>
     <string name="pref_show_treble_on_summary">Shown</string>
-    <string name="show_treble_pref_key">show_treble</string>
+    <string name="show_treble_pref_key" translatable="false">show_treble</string>
 
     <string name="show_mid_range_title">Show Mid Range</string>
     <string name="pref_show_mid_range_off_summary">Hidden</string>
     <string name="pref_show_mid_range_on_summary">Shown</string>
-    <string name="show_mid_range_pref_key">show_mid_range</string>
+    <string name="show_mid_range_pref_key" translatable="false">show_mid_range</string>
 
     <!-- Value in SharedPreferences for red color option -->
     <string name="pref_color_red_value" translatable="false">red</string>
@@ -29,9 +29,13 @@
     <string name="pref_color_green_value" translatable="false">green</string>
 
     <string name="pref_color_title">Color</string>
-    <string name="pref_color_key">color</string>
-    <string name="pref_color_default_value">red</string>
+    <string name="pref_color_key" translatable="false">color</string>
+    <string name="pref_color_default_value" translatable="false">red</string>
     <string name="pref_color_red_label">Red</string>
     <string name="pref_color_green_label">Green</string>
     <string name="pref_color_blue_label">Blue</string>
+
+    <string name="pref_size_multiplier_title">Size Multiplier</string>
+    <string name="pref_size_multiplier_key" translatable="false">size_multiplier</string>
+    <string name="pref_size_multiplier_default_value" translatable="false">1</string>
 </resources>

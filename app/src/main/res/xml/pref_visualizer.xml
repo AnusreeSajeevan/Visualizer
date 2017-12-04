@@ -24,4 +24,8 @@
         android:defaultValue="@string/pref_color_default_value"
         android:entries="@array/pref_color_labels"
         android:entryValues="@array/pref_color_values"/>
+    <EditTextPreference
+        android:defaultValue="@string/pref_size_multiplier_default_value"
+        android:title="@string/pref_size_multiplier_title"
+        android:key="@string/pref_size_multiplier_key"/>
 </PreferenceScreen>

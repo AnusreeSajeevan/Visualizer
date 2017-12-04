@@ -50,10 +50,17 @@ public class MainActivity extends AppCompatActivity implements
         mVisualizerView.setShowTreble(sharedPreferences.getBoolean(getResources().getString(R.string.show_treble_pref_key),
                 getResources().getBoolean(R.bool.show_treble_default_value)));
 
-        mVisualizerView.setMinSizeScale(1);
+        float sizeMultiplier =  getSizeMultiplierFromSharedPreference(sharedPreferences);
+        mVisualizerView.setMinSizeScale(sizeMultiplier);
 
         mVisualizerView.setColor(sharedPreferences.getString(getResources().getString(R.string.pref_color_key),
                  getResources().getString(R.string.pref_color_red_value)));
+    }
+
+    private float getSizeMultiplierFromSharedPreference(SharedPreferences sharedPreferences) {
+        float sizeMultiplier = Float.parseFloat(sharedPreferences.getString(getResources().getString(R.string.pref_size_multiplier_key),
+                getResources().getString(R.string.pref_size_multiplier_default_value)));
+        return sizeMultiplier;
     }
 
     /**
@@ -155,6 +162,10 @@ public class MainActivity extends AppCompatActivity implements
         else if (key.equalsIgnoreCase(getResources().getString(R.string.pref_color_key))) {
             mVisualizerView.setColor(sharedPreferences.getString(getResources().getString(R.string.pref_color_key),
                     getResources().getString(R.string.pref_color_red_value)));
+        }
+        else if (key.equalsIgnoreCase(getResources().getString(R.string.pref_size_multiplier_key))) {
+            float sizeMultiplier =  getSizeMultiplierFromSharedPreference(sharedPreferences);
+            mVisualizerView.setMinSizeScale(sizeMultiplier);
         }
     }
 
