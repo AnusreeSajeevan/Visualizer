@@ -38,4 +38,6 @@
     <string name="pref_size_multiplier_title">Size Multiplier</string>
     <string name="pref_size_multiplier_key" translatable="false">size_multiplier</string>
     <string name="pref_size_multiplier_default_value" translatable="false">1</string>
+
+    <string name="size_err_msg">Enter a size value between 0 and 3</string>
 </resources>

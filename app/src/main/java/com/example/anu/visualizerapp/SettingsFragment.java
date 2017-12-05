@@ -11,14 +11,19 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
+/**
+ * implement OnPreferenceChangeListener to indicate invalid size value
+ */
 public class SettingsFragment extends PreferenceFragmentCompat implements
-        SharedPreferences.OnSharedPreferenceChangeListener{
+        SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceChangeListener{
 
 
     @Override
@@ -39,6 +44,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 setPreferenceSummary(preference, sharedPreferences.getString(preference.getKey(), ""));
             }
         }
+
+        /**
+         * set the OnPreferenceChangeListener specifically for the Edittext preference
+         */
+        Preference preference = findPreference(getResources().getString(R.string.pref_size_multiplier_key));
+        preference.setOnPreferenceChangeListener(this);
     }
 
     /**
@@ -88,5 +99,37 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public void onDestroy() {
         super.onDestroy();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    /**
+     * this method is overriden to check the new size value
+     * it convert the new size preference value to float
+     * if it cannot be converted to a float value, it will show a valid error message to the user
+     * if it can, it will check the new value is between 0(exclusive) and 3(inclusive), if it will return true
+     * otherwise it will return false
+     * @param preference
+     * @param newValue
+     * @return
+     */
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference.getKey().equalsIgnoreCase(getResources().getString(R.string.pref_size_multiplier_key))){
+            Toast errToast = Toast.makeText(getActivity(), getResources().getString(R.string.size_err_msg), Toast.LENGTH_SHORT);
+            try{
+                String str = (String) newValue;
+                float newSizeVal = Float.parseFloat(str);
+                if (newSizeVal>3 || newSizeVal<=0){
+                    errToast.show();
+                    return false;
+                }
+                Log.d("checkfloatt","val : "+newSizeVal);
+            }
+            catch (NumberFormatException e){
+                errToast.show();
+                return false;
+            }
+            return true;
+        }
+        return true;
     }
 }
